@@ -1,0 +1,241 @@
+/*OPERATIONS ON MATRIX
+Name: Ashwamegha Holka*/
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class Matrix
+{
+	private:int i,j,a[3][3];//a is an 2D array used for storing matrix
+	 public:void getvalue();//Taking value from user
+		void uptri();//Matrix is upper triangular or not
+		void sum();//Addition of diagonal element of matrix
+		void transp();//Getting transpose of matrix
+		void opra();//Addition, subtraction, multiplication of two matrices
+};
+void Matrix::getvalue()
+{
+ cout<<"Enter elements of 3 by 3 matrix\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cin>>a[i][j];
+  }
+ }
+ cout<<"Matrix A:\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<a[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\n";
+}
+void Matrix::uptri()
+{
+ int count=0;
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   if(i>j&&a[i][j]==0)
+   {
+    count++;
+   }
+  }
+ }
+ if(count==3)
+   {
+    cout<<"Matrix is upper triangular\n";
+   }
+ else
+   {
+    cout<<"Matrix is not upper triangular\n";
+   }
+ cout<<"\n\n";
+}
+void Matrix::sum()
+{
+ int sum=0;
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   if(i==j)
+   {
+   sum=sum+a[i][j];
+   }
+  }
+ }
+ cout<<"Addition of diagonal elements of matrix is "<<sum<<"\n\n\n";
+}
+void Matrix::transp()
+{
+cout<<"Transpose of matrix A:\n";
+ int trans[3][3];
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   trans[j][i]=a[i][j];
+  }
+ }
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<trans[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\n";
+}
+void Matrix::opra()
+{
+ int add[3][3],sub[3][3],b[3][3],mul[5][5]={0},k;
+ cout<<"Enter element of another matrix for operations like addition, subtraction, multiplication\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+    cin>>b[i][j];
+  }
+ }
+ cout<<"Matrix B:\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<b[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\n";
+ cout<<"Addition of the matrices\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   add[i][j]=a[i][j]+b[i][j];
+  }
+ }
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<add[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\nSubtraction of the matrices\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   sub[i][j]=a[i][j]-b[i][j];
+  }
+ }
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<sub[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\nMultiplication of matrices A and B :\n";
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   for(k=0;k<3;k++)
+   {
+    mul[i][j]+=a[i][k]*b[k][j];
+   }
+  }
+ }
+ for(i=0;i<3;i++)
+ {
+  for(j=0;j<3;j++)
+  {
+   cout<<"   "<<mul[i][j]<<"  ";
+  }
+  cout<<"\n";
+ }
+ cout<<"\n\n"; 
+}
+int main()
+{
+ Matrix m;
+ m.getvalue();
+ m.uptri();
+ m.sum();
+ m.transp();
+ m.opra();
+ return 0;
+}
+/*--------------------------------------------------------OUTPUT---------------------------------------------------------
+Enter elements of 3 by 3 matrix
+1
+2
+3
+0
+4
+5
+0
+0
+6
+Matrix A:
+   1     2     3  
+   0     4     5  
+   0     0     6  
+
+
+Matrix is upper triangular
+
+
+Addition of diagonal elements of matrix is 11
+
+
+Transpose of matrix A:
+   1     0     0  
+   2     4     0  
+   3     5     6  
+
+
+Enter element of another matrix for operations like addition, subtraction, multiplication
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Matrix B:
+   1     2     3  
+   4     5     6  
+   7     8     9  
+
+
+Addition of the matrices
+   2     4     6  
+   4     9     11  
+   7     8     15  
+
+
+Subtraction of the matrices
+   0     0     0  
+   -4     -1     -1  
+   -7     -8     -3  
+
+
+Multiplication of matrices A and B :
+   30     36     42  
+   51     60     69  
+   42     48     54  
+
+*/
